@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Database\Migrations;
+
+use CodeIgniter\Database\Migration;
+
+class Barang extends Migration
+{
+    public function up()
+    {
+        $this->forge->addField([
+            'kd_barang' => [
+                'type' => 'CHAR',
+                'constraint' => '50',
+                'null' => false,
+            ],
+            'nm_barang' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'null' => false,
+            ],
+            'merk' => [
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+                'null' => false,
+            ],
+            'tahun' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'null' => false,
+            ],
+            'asal_usul' => [
+                'type' => 'CHAR',
+                'constraint' => '50',
+                'null' => false,
+            ],
+            'deskripsi' => [
+                'type' => 'CHAR',
+                'constraint' => '100',
+                'null' => true,
+            ],
+            'status' => [
+                'type' => 'ENUM',
+                'constraint' => ['New', 'Second'],
+                'default' => 'New',
+                'null' => false,
+            ],
+        ]);
+
+        $this->forge->addKey('kd_barang', true);
+        $this->forge->createTable('barang');
+    }
+
+    public function down()
+    {
+        $this->forge->dropTable('barang');
+    }
+}
